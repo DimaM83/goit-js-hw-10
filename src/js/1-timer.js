@@ -1,5 +1,5 @@
 import { initializeDateTimePicker } from './exports_for_timer/flatpickr';
-import iziToast from "izitoast";
+import iziToast from 'izitoast';
 import * as timer from './exports_for_timer/timer';
 import { selectors } from './exports_for_timer/refs';
 
@@ -10,29 +10,7 @@ const options = {
   minuteIncrement: 1,
 };
 
-// const onCloseCallback = selectedDates => {
-//   const selectedDate = selectedDates[0];
-
-//   if (selectedDate < new Date()) {
-//     iziToast.error({
-//       title: 'Error',
-//       message: `❌ Rejected promise in ${delay}ms`,
-//     });
-//     timer.resetTimerDisplay();
-//     selectors.startBtnRef.disabled = true;
-//   } else {
-//     iziToast.success({
-//       title: 'Success',
-//       message: `✅ Fulfilled promise in ${delay}ms`,
-//     });
-//     selectors.startBtnRef.disabled = false;
-
-//     localStorage.setItem('selectedDate', selectedDate.toISOString());
-//   }
-// };
-
-
-const onCloseCallback = (selectedDates) => {
+const onCloseCallback = selectedDates => {
   const selectedDate = selectedDates[0];
 
   if (selectedDate < new Date()) {
@@ -59,8 +37,6 @@ initializeDateTimePicker('#datetime-picker', options, selectedDates =>
     options.defaultDate.getTime() - new Date().getTime()
   )
 );
-
-
 
 window.addEventListener('load', () => {
   const savedSelectedDate = localStorage.getItem('selectedDate');
