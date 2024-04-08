@@ -10,26 +10,57 @@ const options = {
   minuteIncrement: 1,
 };
 
-const onCloseCallback = selectedDates => {
+// const onCloseCallback = selectedDates => {
+//   const selectedDate = selectedDates[0];
+
+//   if (selectedDate < new Date()) {
+//     iziToast.error({
+//       title: 'Error',
+//       message: `❌ Rejected promise in ${delay}ms`,
+//     });
+//     timer.resetTimerDisplay();
+//     selectors.startBtnRef.disabled = true;
+//   } else {
+//     iziToast.success({
+//       title: 'Success',
+//       message: `✅ Fulfilled promise in ${delay}ms`,
+//     });
+//     selectors.startBtnRef.disabled = false;
+
+//     localStorage.setItem('selectedDate', selectedDate.toISOString());
+//   }
+// };
+
+
+const onCloseCallback = (selectedDates) => {
   const selectedDate = selectedDates[0];
 
   if (selectedDate < new Date()) {
     iziToast.error({
       title: 'Error',
-      message: 'Please choose a date in the future',
+      message: `❌ Please choose a date in the future`,
     });
     timer.resetTimerDisplay();
     selectors.startBtnRef.disabled = true;
   } else {
     iziToast.success({
       title: 'Success',
-      message: 'You selected a valid future date',
+      message: `✅ You selected a valid future date`,
     });
     selectors.startBtnRef.disabled = false;
 
     localStorage.setItem('selectedDate', selectedDate.toISOString());
   }
 };
+
+initializeDateTimePicker('#datetime-picker', options, selectedDates =>
+  onCloseCallback(
+    selectedDates,
+    options.defaultDate.getTime() - new Date().getTime()
+  )
+);
+
+
 
 window.addEventListener('load', () => {
   const savedSelectedDate = localStorage.getItem('selectedDate');
