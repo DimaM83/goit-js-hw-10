@@ -16,6 +16,10 @@ form.addEventListener('submit', async event => {
   }
 });
 
+iziToast.settings({
+  position: 'topRight',
+});
+
 async function createPromise(delay, state) {
   return new Promise((resolve, reject) => {
     const timeoutId = setTimeout(() => {
